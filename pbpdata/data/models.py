@@ -12,6 +12,7 @@ from django.db import models
 
 class Rider(models.Model):
     plaque = models.CharField(max_length=4)
+    startgroup = models.CharField(max_length=1)
     firstname = models.CharField(max_length=22)
     lastname = models.CharField(max_length=20)
     gender = models.CharField(max_length=1)
@@ -30,4 +31,4 @@ class Control(models.Model):
 class Timestamp(models.Model):
     plaque = models.CharField(max_length=4)
     location = models.ForeignKey('Control', on_delete=models.CASCADE)
-    timestamp = models.IntegerField()
+    timestamp = models.FloatField()

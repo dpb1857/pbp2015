@@ -18,6 +18,7 @@ def load_rider_data():
     with transaction.atomic():
         for record in f:
             r = json.loads(record)
+            r["startgroup"] = r["plaque"][0]
             r = Rider(**r)
             r.save()
             count += 1
@@ -55,6 +56,10 @@ def load_control_locations():
 
 
 def load_timestamps():
+    def timestamp2float(ts):
+        hrs, mins, secs = ts.split(':')
+        return float(int(hrs)) + int(mins)/60 + int(secs)/3600
+
     f = open("../data/results.json")
     count = 0
 
@@ -67,9 +72,15 @@ def load_timestamps():
             results = r["results"]
             results = results[:5] + results[15:16] + results[5:8] + results[16:17] + results[8:16]
             for control, result in zip(controls, results):
-                t = Timestamp(plaque=plaque, location=control, timestamp=42)
-                t.save()
-
-            count += 1
+                if result != "":
+                    t = Timestamp(plaque=plaque, location=control, timestamp=timestamp2float(result))
+                    t.save()
+                    count += 1
 
     print("Added {} Timestamp records".format(count))
+
+
+def load_all():
+    load_rider_data()
+    load_control_locations()
+    load_timestamps()
