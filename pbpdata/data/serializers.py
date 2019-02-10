@@ -8,9 +8,14 @@
 
 from rest_framework import serializers
 
-from data.models import Control
+from data.models import Control, Rider
 
 class ControlSerializer(serializers.ModelSerializer):
     class Meta:
         model = Control
-        fields = ('id', 'seq', 'name', 'distance', 'inbound')
+        fields = ('id', 'location_id', 'name', 'distance', 'inbound')
+
+class RiderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rider
+        fields = ('plaque', 'startgroup', 'firstname', 'lastname', 'gender', 'country', 'club', 'velo', 'time')

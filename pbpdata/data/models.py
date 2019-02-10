@@ -21,9 +21,8 @@ class Rider(models.Model):
     velo = models.CharField(max_length=2)
     time = models.CharField(max_length=5)
 
-
 class Control(models.Model):
-    seq = models.IntegerField()
+    location_id = models.IntegerField()
     name = models.CharField(max_length=20)
     distance = models.IntegerField()
     inbound = models.BooleanField()

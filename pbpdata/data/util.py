@@ -34,21 +34,21 @@ locations = [(1, "SQY", 0, False),
              (6, "St-Nicholas-du-Pelem", 305, False),
              (7, "Carhaix", 327, False),
              (8, "Brest", 381, False),
-             (9, "Carhaix", 434, True),
-             (10, "Mael-Carhaix", 440, True),
-             (11, "Loudeac", 486, True),
-             (12, "Tinteniac", 539, True),
-             (13, "Fougeres", 572, True),
-             (14, "Vilaines-la-Juhel", 627, True),
-             (15, "Mortagne-au-Perche", 678, True),
-             (16, "Dreux", 726, True),
-             (17, "SQY", 765, True)]
+             (7, "Carhaix", 434, True),
+             (9, "Mael-Carhaix", 440, True),
+             (5, "Loudeac", 486, True),
+             (4, "Tinteniac", 539, True),
+             (3, "Fougeres", 572, True),
+             (2, "Vilaines-la-Juhel", 627, True),
+             (10, "Mortagne-au-Perche", 678, True),
+             (11, "Dreux", 726, True),
+             (1, "SQY", 765, True)]
 
 def load_control_locations():
     count = 0
     with transaction.atomic():
-        for seq, name, distance, inbound in locations:
-            c = Control(seq=seq, name=name, distance=distance, inbound=inbound)
+        for location_id, name, distance, inbound in locations:
+            c = Control(location_id=location_id, name=name, distance=distance, inbound=inbound)
             c.save()
             count += 1
 
@@ -64,7 +64,7 @@ def load_timestamps():
     count = 0
 
     controls = list(Control.objects.all())
-    controls.sort(key=lambda x: x.seq)
+    controls.sort(key=lambda x: x.id)
     with transaction.atomic():
         for record in f:
             r = json.loads(record)
