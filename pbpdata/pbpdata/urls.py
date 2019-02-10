@@ -1,3 +1,11 @@
+
+# Find pylint codes at: http://pylint-messages.wikidot.com/all-codes
+# pylint: disable=line-too-long
+# pylint: disable=invalid-name
+# pylint: disable=missing-docstring
+# pylint: disable=too-few-public-methods
+# pylint: disable=superfluous-parens
+
 """pbpdata URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,8 +22,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
+    path('', include('data.urls')),
     path('admin/', admin.site.urls),
 ]

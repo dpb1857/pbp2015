@@ -6,16 +6,11 @@
 # pylint: disable=too-few-public-methods
 # pylint: disable=superfluous-parens
 
-from rest_framework import generics
+from rest_framework import serializers
 
 from data.models import Control
 
-from data.serializers import ControlSerializer
-
-
-# Create your views here.
-
-
-class ControlList(generics.ListAPIView):
-    queryset = Control.objects.all()  # pylint: disable=no-member
-    serializer_class = ControlSerializer
+class ControlSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Control
+        fields = ('id', 'seq', 'name', 'distance', 'inbound')
