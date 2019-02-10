@@ -27,13 +27,15 @@ class ControlDetail(generics.RetrieveAPIView):
 
 class RiderList(generics.ListAPIView):
     """
-    XXX work on getting endpoint doc in a more usable location & format...
     The rider list can be filtered with the following url parameters:
-    plaque
-    startgroup
-    lastname
-    country
-    club
+    * plaque
+    * startgroup
+    * lastname
+    * country
+    * club
+
+    Repeating a parameter multiple times will do an OR of all of the values.
+
     """
     queryset = Rider.objects.all()  # pylint: disable=no-member
     serializer_class = RiderSerializer
