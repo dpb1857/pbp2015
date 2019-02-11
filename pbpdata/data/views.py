@@ -9,10 +9,11 @@
 from django.db.models import Q
 from rest_framework import generics
 from rest_framework.response import Response
+from rest_framework.pagination import LimitOffsetPagination
 
-from data.models import Control, Rider
+from data.models import Control, Rider, Timestamp
 
-from data.serializers import ControlSerializer, RiderSerializer
+from data.serializers import ControlSerializer, RiderSerializer, TimestampSerializer
 
 
 # Create your views here.
@@ -36,12 +37,15 @@ class RiderList(generics.ListAPIView):
 
     Repeating a parameter multiple times will do an OR of all of the values.
 
+    The list is paginated with LimitOffsetPagination, use 'limit' and 'offset'
+    parameters to select a portion of list.
     """
-    queryset = Rider.objects.all()  # pylint: disable=no-member
     serializer_class = RiderSerializer
+    pagination_class = LimitOffsetPagination
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
+    def get_queryset(self):
+        request = self.request
+        queryset = Rider.objects.all() # pylint: disable=no-member
         for key in ["plaque", "startgroup", "lastname", "country", "club"]:
             if key in request.query_params:
                 qexpr = None
@@ -52,9 +56,46 @@ class RiderList(generics.ListAPIView):
                         qexpr = qexpr | Q(**{key: val})
                 queryset = queryset.filter(qexpr)
 
-        serializer = RiderSerializer(queryset, many=True)
-        return Response(serializer.data)
+        return queryset
 
 class RiderDetail(generics.RetrieveAPIView):
-    queryset = Rider.objects.all()  # pylint: disable=no-member
+    queryset = Rider.objects.all() # pylint: disable=no-member
     serializer_class = RiderSerializer
+
+class TimestampList(generics.ListAPIView):
+    """
+    The timestamp list can be filtered with the following url parameters:
+    * plaque
+    * control
+    * start     # timestamp >= start
+    * end       # timestamp < end
+
+    plaque and control can be repeated to do an OR of all of the values.
+
+    The list is paginated with LimitOffsetPagination, use 'limit' and 'offset'
+    parameters to select a portion of list.
+    """
+    serializer_class = TimestampSerializer
+    pagination_class = LimitOffsetPagination
+
+    def get_queryset(self):
+        request = self.request
+        queryset = Timestamp.objects.all() # pylint: disable=no-member
+        for key in ["plaque", "control"]:
+            if key in request.query_params:
+                qexpr = None
+                for val in request.query_params.getlist(key):
+                    if qexpr is None:
+                        qexpr = Q(**{key: val})
+                    else:
+                        qexpr = qexpr | Q(**{key: val})
+                queryset = queryset.filter(qexpr)
+
+        if "start" in request.query_params:
+            queryset = queryset.filter(timestamp__gte=request.query_params["start"])
+
+        if "end" in request.query_params:
+            queryset = queryset.filter(timestamp__lt=request.query_params["end"])
+
+        queryset = queryset.order_by("timestamp")
+        return queryset

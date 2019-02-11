@@ -8,7 +8,7 @@
 
 from rest_framework import serializers
 
-from data.models import Control, Rider
+from data.models import Control, Rider, Timestamp
 
 class ControlSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,3 +19,8 @@ class RiderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rider
         fields = ('plaque', 'startgroup', 'firstname', 'lastname', 'gender', 'country', 'club', 'velo', 'time')
+
+class TimestampSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Timestamp
+        fields = ('plaque', 'control', 'timestamp')

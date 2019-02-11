@@ -16,4 +16,5 @@ urlpatterns = [
     path('controls/<int:pk>/', views.ControlDetail.as_view()),
     path('riders/', views.RiderList.as_view()),
     path('riders/<int:pk>/', views.RiderDetail.as_view()),
+    path('timestamps/', views.TimestampList.as_view()),
     ]

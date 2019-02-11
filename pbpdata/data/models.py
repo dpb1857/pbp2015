@@ -29,5 +29,5 @@ class Control(models.Model):
 
 class Timestamp(models.Model):
     plaque = models.CharField(max_length=4)
-    location = models.ForeignKey('Control', on_delete=models.CASCADE)
+    control = models.ForeignKey('Control', on_delete=models.CASCADE)
     timestamp = models.FloatField()
