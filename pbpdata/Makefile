@@ -1,7 +1,8 @@
 
 
 help:
-	@echo "make build"
+	@echo "Targets:"
+	@echo "  make build"
 
 build:
 	docker build -t pbpdata:latest .	
