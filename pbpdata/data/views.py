@@ -26,6 +26,8 @@ class ControlDetail(generics.RetrieveAPIView):
     queryset = Control.objects.all()  # pylint: disable=no-member
     serializer_class = ControlSerializer
 
+
+
 class RiderList(generics.ListAPIView):
     """
     The rider list can be filtered with the following url parameters:
@@ -40,8 +42,11 @@ class RiderList(generics.ListAPIView):
     The list is paginated with LimitOffsetPagination, use 'limit' and 'offset'
     parameters to select a portion of list.
     """
+    class RiderPagination(LimitOffsetPagination):
+        default_limit = 50
+
+    pagination_class = RiderPagination
     serializer_class = RiderSerializer
-    pagination_class = LimitOffsetPagination
 
     def get_queryset(self):
         request = self.request
@@ -75,8 +80,11 @@ class TimestampList(generics.ListAPIView):
     The list is paginated with LimitOffsetPagination, use 'limit' and 'offset'
     parameters to select a portion of list.
     """
+    class TimestampPagination(LimitOffsetPagination):
+        default_limit = 100
+
+    pagination_class = TimestampPagination
     serializer_class = TimestampSerializer
-    pagination_class = LimitOffsetPagination
 
     def get_queryset(self):
         request = self.request
