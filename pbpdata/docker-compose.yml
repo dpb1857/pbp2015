@@ -1,6 +1,8 @@
 version: '3'
 
+
 services:
+
   nginx:
     image: nginx:stable
     ports:
@@ -10,6 +12,13 @@ services:
       - ./etc/nginx.conf:/etc/nginx/nginx.conf:ro
 
   django:
+    extra_hosts:
+    - "thinkpad:${GATEWAY}"
     image: pbpdata:latest
     expose:
       - "8000"
+
+  ubuntu:
+    extra_hosts:
+    - "thinkpad:${GATEWAY}"
+    image: ubuntu:dpb
