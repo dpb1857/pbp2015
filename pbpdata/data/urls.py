@@ -12,9 +12,9 @@ from data import views
 
 
 urlpatterns = [
-    path('controls/', views.ControlList.as_view()),
-    path('controls/<int:pk>/', views.ControlDetail.as_view()),
-    path('riders/', views.RiderList.as_view()),
-    path('riders/<int:pk>/', views.RiderDetail.as_view()),
-    path('timestamps/', views.TimestampList.as_view()),
+    path('controls', views.ControlList.as_view()),
+    path('controls/<int:pk>', views.ControlDetail.as_view()),
+    path('riders', views.RiderList.as_view()),
+    path('riders/<int:pk>', views.RiderDetail.as_view()),
+    path('timestamps', views.TimestampList.as_view()),
     ]
