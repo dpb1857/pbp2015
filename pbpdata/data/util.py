@@ -6,6 +6,13 @@
 # pylint: disable=too-few-public-methods
 # pylint: disable=superfluous-parens
 
+# To use:
+#
+#   manage.py shell
+#   from data import util
+#   util.load_all()
+
+
 import json
 
 from django.db import transaction
@@ -73,7 +80,7 @@ def load_timestamps():
             results = results[:5] + results[15:16] + results[5:8] + results[16:17] + results[8:16]
             for control, result in zip(controls, results):
                 if result != "":
-                    t = Timestamp(plaque=plaque, location=control, timestamp=timestamp2float(result))
+                    t = Timestamp(plaque=plaque, control=control, timestamp=timestamp2float(result))
                     t.save()
                     count += 1
 
