@@ -11,4 +11,4 @@ nginx:
 	docker run --rm --name my-nginx -v `/bin/pwd`/etc/nginx.conf:/etc/nginx/nginx.conf:ro -p 8080:80 nginx:stable
 
 run:
-	docker run --rm --network host --add-host thinkpad:${GATEWAY} --name django-pbpdata pbpdata:latest
+	docker run --rm --network host --name django-pbpdata --env DATABASE_URL --env PGUSER --env PGPASSWORD  pbpdata:latest
