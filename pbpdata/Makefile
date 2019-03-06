@@ -1,8 +1,13 @@
 
+GATEWAY = localhost:5432
+DATABASE_URL = postgres://${GATEWAY}/pbp2015
 
 help:
 	@echo "Targets:"
 	@echo "  make build"
+
+runserver:
+	PGUSER=pbp2015 DATABASE_URL=${DATABASE_URL} ./manage.py runserver
 
 build:
 	docker build -t pbpdata:latest .

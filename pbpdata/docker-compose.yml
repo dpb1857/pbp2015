@@ -20,7 +20,5 @@ services:
     expose:
       - "8000"
 
-  ubuntu:
-    extra_hosts:
-    - "thinkpad:${GATEWAY}"
-    image: ubuntu:dpb
+#   ubuntu:
+#     image: ubuntu:dpb
