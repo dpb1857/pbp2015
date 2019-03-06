@@ -1,0 +1,5 @@
+{"pk": 1, "model": "pbp2011.biketype", "fields": {"bike_type": "tandem"}}
+{"pk": 2, "model": "pbp2011.biketype", "fields": {"bike_type": "velo"}}
+{"pk": 3, "model": "pbp2011.biketype", "fields": {"bike_type": "special"}}
+{"pk": 4, "model": "pbp2011.biketype", "fields": {"bike_type": "tricycle"}}
+{"pk": 5, "model": "pbp2011.biketype", "fields": {"bike_type": "triplette"}}

@@ -1,0 +1,15 @@
+{"pk": 1, "model": "pbp2011.control", "fields": {"distance": 0.0, "name": "Saint-Quentin-en-Yvelines"}}
+{"pk": 2, "model": "pbp2011.control", "fields": {"distance": 221.0, "name": "Villaines-la-Juhel"}}
+{"pk": 3, "model": "pbp2011.control", "fields": {"distance": 310.0, "name": "Fougeres"}}
+{"pk": 4, "model": "pbp2011.control", "fields": {"distance": 364.0, "name": "Tinteniac"}}
+{"pk": 5, "model": "pbp2011.control", "fields": {"distance": 449.0, "name": "Loudeac"}}
+{"pk": 6, "model": "pbp2011.control", "fields": {"distance": 525.0, "name": "Carhaix-Plouguer"}}
+{"pk": 7, "model": "pbp2011.control", "fields": {"distance": 618.0, "name": "Brest"}}
+{"pk": 8, "model": "pbp2011.control", "fields": {"distance": 703.0, "name": "Carhaix-Plouguer"}}
+{"pk": 9, "model": "pbp2011.control", "fields": {"distance": 782.0, "name": "Loudeac"}}
+{"pk": 10, "model": "pbp2011.control", "fields": {"distance": 867.0, "name": "Tinteniac"}}
+{"pk": 11, "model": "pbp2011.control", "fields": {"distance": 921.0, "name": "Fougeres"}}
+{"pk": 12, "model": "pbp2011.control", "fields": {"distance": 1009.0, "name": "Villaines-la-Juhel"}}
+{"pk": 13, "model": "pbp2011.control", "fields": {"distance": 1090.0, "name": "Mortagne-au-Perche"}}
+{"pk": 14, "model": "pbp2011.control", "fields": {"distance": 1165.0, "name": "Dreux"}}
+{"pk": 15, "model": "pbp2011.control", "fields": {"distance": 1230.0, "name": "Saint-Quentin-en-Yvelines"}}
